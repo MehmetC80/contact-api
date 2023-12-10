@@ -28,12 +28,11 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 @RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService{
 
-
     private  final ContactRepository contactRepository;
 
 
     @Override
-    public Page<Contact> getAllContact(int page, int size) {
+    public Page<Contact> getAllContacts(int page, int size) {
         return contactRepository.findAll(PageRequest.of(page,size, Sort.by("name")));
     }
 
@@ -53,6 +52,7 @@ public class ContactServiceImpl implements ContactService{
     }
 
     public String uploadPhoto(String id, MultipartFile file){
+        log.info("Saving picture for user ID: {}",id );
         Contact contact = getContact(id);
         String photoUrl=photoFunction.apply(id,file);
         contact.setPhotoUrl(photoUrl);

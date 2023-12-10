@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ContactService {
 
- Page<Contact> getAllContact(int page, int size);
+ Page<Contact> getAllContacts(int page, int size);
 
  Contact getContact(String id);
 
